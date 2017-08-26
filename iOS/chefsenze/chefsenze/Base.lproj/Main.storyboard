@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9pv-A4-QxB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--First-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="SearchIngredientsViewController" customModule="chefsenze" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gaL-BB-TCG">
+                                <rect key="frame" x="17" y="80" width="341" height="517"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gaL-BB-TCG" secondAttribute="height" multiplier="341:567" constant="30.070546737213419" id="Lcc-4x-a3C"/>
+                                    <constraint firstAttribute="width" constant="341" id="Pbn-r1-QQ9"/>
+                                    <constraint firstAttribute="height" constant="517" id="r24-bo-bqH"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="1Om-cC-UrD">
+                                        <rect key="frame" x="0.0" y="28" width="341" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Om-cC-UrD" id="pno-EZ-pt1">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="gIv-Vl-KRT"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="bBd-be-cQm"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggd-YI-2dj">
+                                <rect key="frame" x="17" y="605" width="341" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ggd-YI-2dj" secondAttribute="height" multiplier="341:42" id="gs4-Cm-mgw"/>
+                                    <constraint firstAttribute="width" constant="341" id="mDF-jz-lO3"/>
+                                    <constraint firstAttribute="height" constant="42" id="zUF-JG-7f0"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vaZ-WO-nZH">
+                                <rect key="frame" x="16" y="28" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SDy-UK-mWe"/>
+                                    <constraint firstAttribute="width" constant="343" id="opt-tp-GPN"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.64313725489999995" green="0.24313725489999999" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gaL-BB-TCG" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="1" id="1oQ-wK-MyH"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="gaL-BB-TCG" secondAttribute="bottom" constant="70" id="47n-dT-ZrY"/>
+                            <constraint firstItem="vaZ-WO-nZH" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="NOP-D3-dBP"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Ggd-YI-2dj" secondAttribute="bottom" constant="20" id="ObS-VU-PZf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gaL-BB-TCG" secondAttribute="trailing" constant="1" id="WS2-10-rX9"/>
+                            <constraint firstItem="vaZ-WO-nZH" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="aqu-Nx-522"/>
+                            <constraint firstItem="Ggd-YI-2dj" firstAttribute="top" secondItem="gaL-BB-TCG" secondAttribute="bottom" constant="8" id="h49-wz-Ell"/>
+                            <constraint firstItem="Ggd-YI-2dj" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="1" id="sRy-If-0M3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ggd-YI-2dj" secondAttribute="trailing" constant="1" id="sVb-oS-V81"/>
+                            <constraint firstItem="vaZ-WO-nZH" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="xsZ-4f-3R0"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="ingredientTextField" destination="vaZ-WO-nZH" id="qu7-8d-epC"/>
+                        <outlet property="ingredientsList" destination="gaL-BB-TCG" id="Sql-bJ-dbO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-322.39999999999998" y="-191.1544227886057"/>
+        </scene>
+        <!--Second-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="chefsenze" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="-191"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>
