@@ -32,6 +32,7 @@ ingredients_str = '' #String with stopwords removal
 nutritional_facts = '' #List
 time = ''
 image_url = ''
+method = []
 
 # Iterate over the list of retrieved URLs
 for url in urls:
@@ -46,9 +47,16 @@ for url in urls:
 
 	# Extract the author of the current image
 	try:
-		title = title = tree.xpath("//body/div/section[@id='recipe-single']/div[@class='container recipe-container']/div[@class='row recipe-header']/div[@class='col-lg-9 col-sd-12 col-md-12 col-sm-12']/div[@class='row']/div[@class='col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 single-recipe-details']/h1/text()")[0]
+		title = tree.xpath("//body/div/section[@id='recipe-single']/div[@class='container recipe-container']/div[@class='row recipe-header']/div[@class='col-lg-9 col-sd-12 col-md-12 col-sm-12']/div[@class='row']/div[@class='col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 single-recipe-details']/h1/text()")[0]
 	except:
 		title = "Not Provided"
+
+	try:
+		method_source = tree.xpath("//body/div/section[@id='recipe-single']/div[@class='container recipe-container']/div[@class='row recipe-header']/div[@class='col-lg-9 col-sd-12 col-md-12 col-sm-12']/div[@class='row'][2]/div[@class='instructions-col col-sm-7 col-md-8 col-sd-8 col-lg-8']/div[@class='recipe-instructions']/div[@class='instructions-wrapper']/div[@class='method-p']/div/ol/li/text()")
+		for i in range(len(method_source)):
+			method_source[i] = method_source[i].strip()
+	except:
+		method_source = "Not Provided"
 
 	# Extract the title of the current image
 	try:
@@ -97,12 +105,17 @@ for url in urls:
 	except:
 		image_url = "Not Provided"
 
-	json_object.append({"title": title, "ingredients": ingredients_json_list, "ingredients_str": ingredients_string, "nutritional_facts": nf_object, "time": time, "url": url, "image_url":image_url, "vegetarian": vegetarian})
+	dbsource.write(json.dumps({"title": title, "ingredients": ingredients_json_list, "ingredients_str": ingredients_string, "nutritional_facts": nf_object, "time": time, "url": url, "image_url":image_url, "vegetarian": vegetarian, "method": method_source}) + '\n')
 
 	#print json.dumps(json_object)
 	count += 1
 	print("Processed URL " + str(count))
-dbsource.write(json.dumps(json_object) + '\n')
+
+
+
+#for obj in json
+
+#dbsource.write(json.dumps(json_object) + '\n')
 
 dbsource.close()
 
