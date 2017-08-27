@@ -15,6 +15,7 @@ urls_file = raw_input()
 vegetarian = False
 urls = []
 count = 0
+json_object = []
 
 with open(urls_file) as file_obj:
 	lines = file_obj.readlines()
@@ -67,7 +68,7 @@ for url in urls:
 
 		output_string = ''
 		for i in range(len(list_ingredients)):
-		    list_ingredients[i] = [word for word in list_ingredients[i].split() if word not in stopwords.words('english') and word not in ['g', 'ml'] and word.isdigit() is False]
+		    list_ingredients[i] = [word for word in list_ingredients[i].split() if word not in stopwords.words('english') and word not in ['g', 'ml', 'cm'] and word.isdigit() is False]
 		    list_ingredients[i] = ' '.join(list_ingredients[i])
 		ingredients_string = ', '.join(list_ingredients)
 	except:
@@ -75,7 +76,11 @@ for url in urls:
 
 	# Extract the license of the current image
 	try:
-		nutritional_facts = "[]"
+		nutritional_facts = tree.xpath("//body/div/section[@id='recipe-single']/div[@class='container recipe-container']/div[@class='row recipe-header']/div[@class='col-lg-9 col-sd-12 col-md-12 col-sm-12']/div[@class='row']/div[@class='col-lg-7 col-md-7 col-sm-6 col-sm-ls-5 single-recipe-details']/div[@class='nutrition-wrapper']/div[@class='nutrition-expand']/ul/li/div/div/text()")#/li[@class='data-title']/text()")
+		for i in range(len(nutritional_facts)):
+		    nutritional_facts[i] = nutritional_facts[i].strip()
+		nf_object = {"calories": nutritional_facts[1], "fat": nutritional_facts[4], "saturates": nutritional_facts[7], "protein": nutritional_facts[10], "carbs": nutritional_facts[13], "sugars": nutritional_facts[16], "salt": nutritional_facts[19], "fibre": nutritional_facts[22]}
+
 	except:
 		nutritional_facts = "Not Provided"
 
@@ -92,12 +97,12 @@ for url in urls:
 	except:
 		image_url = "Not Provided"
 
-	json_object = [{"title": title, "ingredients": ingredients_json_list, "ingredients_str": ingredients_string, "nutritional_facts": nutritional_facts, "time": time, "url": url, "image_url":image_url, "vegetarian": vegetarian}]
+	json_object.append({"title": title, "ingredients": ingredients_json_list, "ingredients_str": ingredients_string, "nutritional_facts": nf_object, "time": time, "url": url, "image_url":image_url, "vegetarian": vegetarian})
 
 	#print json.dumps(json_object)
 	count += 1
 	print("Processed URL " + str(count))
-	dbsource.write(json.dumps(json_object) + '\n')
+dbsource.write(json.dumps(json_object) + '\n')
 
 dbsource.close()
 
