@@ -107,7 +107,6 @@
 				A5DE41231F5208CC00B6793F /* Models */,
 				A5DE410A1F52041300B6793F /* AppDelegate.swift */,
 				A5DE41101F52041300B6793F /* Main.storyboard */,
-				A57900681F53146A00D3EAD9 /* RecipeDetails.swift */,
 				A5DE41131F52041300B6793F /* Assets.xcassets */,
 				A5DE41151F52041300B6793F /* LaunchScreen.storyboard */,
 				A5DE41181F52041300B6793F /* Info.plist */,
@@ -142,6 +141,7 @@
 				A5DE413B1F52EA3300B6793F /* RecipeListViewController.swift */,
 				A57900621F52F3E000D3EAD9 /* recipeCell.swift */,
 				A57900641F52F40100D3EAD9 /* recipeCell.xib */,
+				A57900681F53146A00D3EAD9 /* RecipeDetails.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

@@ -38,7 +38,6 @@ class Recipe {
             self.recipeMethod.append(step)
         }
         self.recipeIngredients = json["ingredients"].stringValue
-        self.printRecipe()
     }
     
     func printRecipe() {

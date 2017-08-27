@@ -20,6 +20,7 @@ class RecipeDetails: UIViewController {
     
     // Variables
     var recipe = Recipe()
+    var image = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,10 @@ class RecipeDetails: UIViewController {
         self.recipeNameLabel.text = recipe.recipeName
         self.recipeNameLabel.textColor = UIColor.white
         self.ingredientsTextView.text = recipe.recipeIngredients
-        self.getImage(url: recipe.recipeUrl)
+        self.recipeImage.image = image
         for line:String in recipe.recipeMethod {
             self.cookingMethod.text.append(line)
-            self.cookingMethod.text.append("\n")
+            self.cookingMethod.text.append("\n\n")
         }
         
     }
@@ -58,7 +59,7 @@ class RecipeDetails: UIViewController {
                                 self.recipeImage.image = UIImage(data: imgdata)
                             }
                         }
-                        self.recipeImage.image = UIImage(data: imgdata)
+                        //self.recipeImage.image = UIImage(data: imgdata)
                     }
                     else {
                         print("no hay imagen")
@@ -74,6 +75,11 @@ class RecipeDetails: UIViewController {
         
     }
     
+    @IBAction func returnToLastView(_ sender: Any) {
+        self.dismiss(animated: true) {
+            print("Bye")
+        }
+    }
     
 
 }

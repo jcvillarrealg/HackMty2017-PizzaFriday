@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class RecipeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // Outlets
     @IBOutlet weak var topBarView: UIView!
@@ -18,6 +18,7 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
     
     // Variables
     var recipesList = [Recipe]()
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
         self.recipesTableView.tableFooterView = UIView()
         self.recipesTableView.separatorColor = UIColor.AppColors.orangeMain
         self.recipesTableView.separatorStyle = .singleLine
+        self.recipesTableView.allowsSelection = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,11 +56,7 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
         
         cell?.recipeName.text = recipesList[indexPath.row].recipeName
         cell?.recipeTime.text = recipesList[indexPath.row].recipeTime
-        /*DispatchQueue.global(qos: .userInitiated).async {
-            DispatchQueue.main.async {
-                cell?.recipeThumbnail.downloadedFrom(url: self.recipesList[indexPath.row].recipePhoto)
-            }
-        }*/
+        
         let session = URLSession(configuration: .default)
         var url = self.recipesList[indexPath.row].recipePhoto
         url = URL(string: "http://" + (url?.absoluteString.substring(from: 2))!)!
@@ -66,13 +64,11 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
         {
             (data, response, error) in
             if error != nil {
-                print(error)
                 print("cant download")
-                print(url!)
+                
             }
             else {
                 if (response as? HTTPURLResponse) != nil {
-                    print("got image")
                     if let imgdata = data {
                         DispatchQueue.global(qos: .userInitiated).async {
                             DispatchQueue.main.async {
@@ -80,6 +76,7 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
                             }
                         }
                         cell?.recipeThumbnail.image = UIImage(data: imgdata)
+                        
                     }
                     else {
                         print("no hay imagen")
@@ -99,6 +96,17 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("hola")
         self.recipesList[indexPath.row].printRecipe()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let recipeDetails = storyboard.instantiateViewController(withIdentifier: "recipeDetails") as! RecipeDetails
+        recipeDetails.recipe = recipesList[indexPath.row]
+        //recipeDetails.image = images[indexPath.row]
+        //recipeDetails.recipeImage.image = images[indexPath.row]
+        let ip = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: ip!) as! recipeCell
+        
+        //recipeDetails.recipeImage.image = currentCell.recipeThumbnail.image
+        self.present(recipeDetails, animated: true, completion: nil)
     }
     
     @IBAction func returnToLastView(_ sender: Any) {
