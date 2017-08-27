@@ -41,6 +41,9 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
         return recipesList.count
     }
     
+    
+
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell") as? recipeCell
         
@@ -51,14 +54,57 @@ class RecipeListViewController: UIViewController, UITabBarDelegate, UITableViewD
         
         cell?.recipeName.text = recipesList[indexPath.row].recipeName
         cell?.recipeTime.text = recipesList[indexPath.row].recipeTime
-        DispatchQueue.global(qos: .userInitiated).async {
+        /*DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async {
                 cell?.recipeThumbnail.downloadedFrom(url: self.recipesList[indexPath.row].recipePhoto)
             }
+        }*/
+        let session = URLSession(configuration: .default)
+        var url = self.recipesList[indexPath.row].recipePhoto
+        url = URL(string: "http://" + (url?.absoluteString.substring(from: 2))!)!
+        let downloadTask = session.dataTask(with: url!)
+        {
+            (data, response, error) in
+            if error != nil {
+                print(error)
+                print("cant download")
+                print(url!)
+            }
+            else {
+                if (response as? HTTPURLResponse) != nil {
+                    print("got image")
+                    if let imgdata = data {
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            DispatchQueue.main.async {
+                                cell?.recipeThumbnail.image = UIImage(data: imgdata)
+                            }
+                        }
+                        cell?.recipeThumbnail.image = UIImage(data: imgdata)
+                    }
+                    else {
+                        print("no hay imagen")
+                    }
+                }
+                else {
+                    print("no response")
+                }
+            }
         }
+        downloadTask.resume()
+        
         
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("hola")
+        self.recipesList[indexPath.row].printRecipe()
+    }
+    
+    @IBAction func returnToLastView(_ sender: Any) {
+        self.dismiss(animated: true) { 
+            print("Bye")
+        }
+    }
     
 }

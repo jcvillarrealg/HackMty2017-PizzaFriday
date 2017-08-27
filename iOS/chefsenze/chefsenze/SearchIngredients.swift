@@ -108,9 +108,11 @@ class SearchIngredientsViewController: UIViewController, UITextFieldDelegate, UI
             print(ingredientsString)
             ChefsenseAPI.getRecipes(ingredients: ingredientsString, completion: { (comp: Bool, list:[Recipe]) in
                 if comp {
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let recipesView = storyboard.instantiateViewController(withIdentifier: "recipesList") as! RecipeListViewController
-                    self.navigationController?.pushViewController(recipesView, animated: true)
+                    recipesView.recipesList = list
+                    self.present(recipesView, animated: true, completion: nil)
                 }
             })
         }

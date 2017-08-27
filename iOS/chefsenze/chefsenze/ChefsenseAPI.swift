@@ -12,7 +12,7 @@ import Alamofire
 
 class ChefsenseAPI {
     
-    static let apiurl = "10.23.16.129:3000/recipes/"
+    static let apiurl = "http://10.12.221.251:3000/recipes/"
     
     static func getRecipes(ingredients:String, completion:@escaping (_ didSucceed:Bool, _ recipesList : [Recipe])-> Void){
         let headers:HTTPHeaders = [
@@ -24,8 +24,8 @@ class ChefsenseAPI {
         "ingredients" : ingredients
         ]
         
-        let url = apiurl + "find"
-        
+        let url = (apiurl + "find").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        print(url)
         Alamofire.request(url, method:.post, parameters:body, headers:headers)
             .validate()
             .responseJSON { response in
@@ -33,6 +33,7 @@ class ChefsenseAPI {
                 case .success:
                     if let data = response.data {
                         let json = JSON(data:data)
+                        print(json)
                         var recipes = [Recipe]()
                         for (_,subJson):(String, JSON) in json {
                             recipes.append(Recipe(subJson))

@@ -12,6 +12,7 @@
 		A57900651F52F40100D3EAD9 /* recipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57900641F52F40100D3EAD9 /* recipeCell.xib */; };
 		A57900671F530E2900D3EAD9 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57900661F530E2900D3EAD9 /* UIImageViewExtensions.swift */; };
 		A57900691F53146A00D3EAD9 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57900681F53146A00D3EAD9 /* RecipeDetails.swift */; };
+		A579006B1F5330FB00D3EAD9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579006A1F5330FB00D3EAD9 /* StringExtensions.swift */; };
 		A5DE410B1F52041300B6793F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DE410A1F52041300B6793F /* AppDelegate.swift */; };
 		A5DE410D1F52041300B6793F /* SearchIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DE410C1F52041300B6793F /* SearchIngredients.swift */; };
 		A5DE41121F52041300B6793F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5DE41101F52041300B6793F /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		A57900641F52F40100D3EAD9 /* recipeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = recipeCell.xib; sourceTree = "<group>"; };
 		A57900661F530E2900D3EAD9 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		A57900681F53146A00D3EAD9 /* RecipeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
+		A579006A1F5330FB00D3EAD9 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		A5DE41071F52041300B6793F /* chefsenze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chefsenze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DE410A1F52041300B6793F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5DE410C1F52041300B6793F /* SearchIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIngredients.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				A5DE41311F522F9400B6793F /* KeyboardExtensions.swift */,
 				A5DE41371F52628500B6793F /* ColorsExtensions.swift */,
 				A57900661F530E2900D3EAD9 /* UIImageViewExtensions.swift */,
+				A579006A1F5330FB00D3EAD9 /* StringExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A579006B1F5330FB00D3EAD9 /* StringExtensions.swift in Sources */,
 				A5DE41321F522F9400B6793F /* KeyboardExtensions.swift in Sources */,
 				A5DE41361F52413B00B6793F /* ingredientCell.swift in Sources */,
 				A5DE41381F52628500B6793F /* ColorsExtensions.swift in Sources */,

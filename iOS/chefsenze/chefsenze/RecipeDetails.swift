@@ -10,10 +10,29 @@ import UIKit
 
 class RecipeDetails: UIViewController {
 
+    // Outlets
+    @IBOutlet var topBarView: UIView!
+    @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var ingredientsTextView: UITextView!
+    @IBOutlet weak var cookingMethod: UITextView!
+    
+    
+    // Variables
+    var recipe = Recipe()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.topBarView.layer.backgroundColor = UIColor.AppColors.orangeMain.cgColor
+        self.recipeNameLabel.text = recipe.recipeName
+        self.recipeNameLabel.textColor = UIColor.white
+        self.ingredientsTextView.text = recipe.recipeIngredients
+        self.getImage(url: recipe.recipeUrl)
+        for line:String in recipe.recipeMethod {
+            self.cookingMethod.text.append(line)
+            self.cookingMethod.text.append("\n")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +40,40 @@ class RecipeDetails: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func getImage(url: URL)
+    {
+        let session = URLSession(configuration: .default)
+        let downloadTask = session.dataTask(with: url)
+        {
+            (data, response, error) in
+            if error != nil {
+                print("cant download")
+            }
+            else {
+                if (response as? HTTPURLResponse) != nil {
+                    print("got image")
+                    if let imgdata = data {
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            DispatchQueue.main.async {
+                                self.recipeImage.image = UIImage(data: imgdata)
+                            }
+                        }
+                        self.recipeImage.image = UIImage(data: imgdata)
+                    }
+                    else {
+                        print("no hay imagen")
+                    }
+                }
+                else {
+                    print("no response")
+                }
+            }
+        }
+        downloadTask.resume()
+        
+        
     }
-    */
+    
+    
 
 }
